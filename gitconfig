@@ -1,0 +1,53 @@
+[github]
+	user = avermeulen
+
+[user]
+	name = Alex Vermeulen
+
+[alias]
+	br = branch
+	merged = branch --merged
+	co = checkout
+	nb = checkout -b
+	ci = commit
+	ca = commit --amend
+	df = diff
+	dc = diff --cached
+	cp = cherry-pick
+	st = status -sb -uno
+	gl = log --pretty=short --decorate=short --graph
+	lc = log ORIG_HEAD.. --stat --no-merges
+	review = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log -p origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH
+
+[push]
+	default = current
+
+[mergetool]
+	prompt = false
+
+[merge]
+	tool = fugitive
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+	prompt = false
+
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+
+[color]
+	branch  = auto
+	diff = auto
+	status = auto
+
+[color "status"]
+	added = yellow
+	changed = green
+
+[color "diff"]
+	meta = cyan bold
+	frag = magenta bold
+	old = red bold
+	new = green bold

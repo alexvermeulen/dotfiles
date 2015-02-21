@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Aliases
+
+# ls
+alias ls='ls -Gp'
+alias ll='ls -AGhl'
+
+# vim
+alias vim='mvim -v'
+alias vimdiff='mvim -v -d'
+
+# bundle exec
+alias be='bundle exec'
