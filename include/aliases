@@ -10,7 +10,7 @@ alias ll='ls -AGhl'
 alias be='bundle exec'
 
 # Mac Specific
-if [ $PLATFORM == 'mac']; then
+if [ $PLATFORM == 'mac' ]; then
 	
 	# vim
 	alias vim='mvim -v'
@@ -21,3 +21,4 @@ if [ $PLATFORM == 'mac']; then
 	alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
 fi
+
