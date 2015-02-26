@@ -23,11 +23,17 @@ export LSCOLORS='Gxfxcxdxdxegedabagacad'
 
 # Customize the prompt
 function exitstatus {
+    if [[ -n $SSH_CLIENT ]]; then
+        HOST=@`echo $HOSTNAME | grep -o '[a-z0-9]*\.[a-z]*$' | cut -d '.' -f 1`
+    else
+        HOST=''
+    fi
+
     if [ $? -eq 0 ]
     then
-        PS1="$GREEN:)$RESET $CYAN\D{%H:%M:%S}$RESET \u:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
+        PS1="$GREEN:)$RESET $CYAN\D{%H:%M:%S}$RESET \u$HOST:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
     else
-        PS1="$RED:($RESET $YELLOW\D{%H:%M:%S}$RESET \u:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
+        PS1="$RED:($RESET $YELLOW\D{%H:%M:%S}$RESET \u$HOST:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
     fi
 }
 PROMPT_COMMAND=exitstatus
