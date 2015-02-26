@@ -26,7 +26,7 @@ fi
 # Customize the prompt
 function exitstatus {
     if [[ -n $SSH_CLIENT ]]; then
-        HOST=@`echo $HOSTNAME | grep -o '[a-z0-9]*\.[a-z]*$' | cut -d '.' -f 1`
+        HOST=@`echo $HOSTNAME | cut -d '.' -f 1`
     else
         HOST=''
     fi
