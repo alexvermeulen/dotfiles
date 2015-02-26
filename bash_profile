@@ -11,9 +11,11 @@ export PLATFORM
 # Use vi editing mode
 set -o vi
 
-# Load bash_completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    source $(brew --prefix)/etc/bash_completion
+if [[ $PLATFORM == 'mac' ]]; then
+    # Load bash_completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        source $(brew --prefix)/etc/bash_completion
+    fi
 fi
 
 # Load RVM into a shell session *as a function*
@@ -26,7 +28,6 @@ PATH=/usr/local/sbin:/usr/local/bin:$PATH
 PATH=$HOME/.rvm/bin:$PATH
 
 export PATH
-export DOTFILES_DIR="$HOME/.dotfiles"
 
 # Set up virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
@@ -37,14 +38,16 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # Load local configuration for this machine
-if [ -f local_config.sh ]; then
+if [ -f $HOME/local_config.sh ]; then
     source local_config.sh
 fi
 
 # Load dotfiles
-for file in $DOTFILES_DIR/include/*
-do
-    source $file
-done
-
+if [ -d $HOME/.dotfiles ]; then
+    export DOTFILES_DIR="$HOME/.dotfiles"
+    for file in $DOTFILES_DIR/include/*
+    do
+        source $file
+    done
+fi
 

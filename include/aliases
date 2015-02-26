@@ -10,7 +10,7 @@ alias ll='ls -AGhl'
 alias be='bundle exec'
 
 # Mac Specific
-if [ $PLATFORM == 'mac' ]; then
+if [[ $PLATFORM == 'mac' ]]; then
 	
 	# vim
 	alias vim='mvim -v'
