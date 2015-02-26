@@ -12,9 +12,14 @@ export PLATFORM
 set -o vi
 
 if [[ $PLATFORM == 'mac' ]]; then
-    # Load bash_completion
+    # Load bash_completion for __git_ps1
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         source $(brew --prefix)/etc/bash_completion
+    fi
+elif [[ $PLATFORM == 'linux' ]]; then
+    # Load bash_git for __git_ps1
+    if [ -f $HOME/.bash_git ]; then
+        source $HOME/.bash_git
     fi
 fi
 
