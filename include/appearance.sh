@@ -19,7 +19,9 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 
 # ls colours
-export LSCOLORS='Gxfxcxdxdxegedabagacad'
+if [[ $PLATFORM == 'mac' ]]; then
+    export LSCOLORS='Gxfxcxdxdxegedabagacad'
+fi
 
 # Customize the prompt
 function exitstatus {
