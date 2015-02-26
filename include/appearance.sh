@@ -23,10 +23,15 @@ if [[ $PLATFORM == 'mac' ]]; then
     export LSCOLORS='Gxfxcxdxdxegedabagacad'
 fi
 
+if [[ `__git_ps1` == *'command not found'* ]]; then
+    # Load bash_completion for __git_ps1
+    echo "Error: The use of __git_ps1 is required for prompt customization."
+fi
+
 # Customize the prompt
 function exitstatus {
     if [[ -n $SSH_CLIENT ]]; then
-        HOST=@`echo $HOSTNAME | cut -d '.' -f 1`
+        HOST=@$WHITE`echo $HOSTNAME | cut -d '.' -f 1`$RESET
     else
         HOST=''
     fi
