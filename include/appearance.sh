@@ -31,16 +31,22 @@ fi
 # Customize the prompt
 function exitstatus {
     if [[ -n $SSH_CLIENT ]]; then
-        HOST=@$WHITE`echo $HOSTNAME | cut -d '.' -f 1`$RESET
+        host=@$WHITE`echo $HOSTNAME | cut -d '.' -f 1`$RESET
     else
-        HOST=''
+        host=''
+    fi
+
+    if [[ $VIRTUAL_ENV != '' ]]; then
+        venv="$WHITE(${VIRTUAL_ENV##*/}) $RESET"
+    else
+        venv=''
     fi
 
     if [ $? -eq 0 ]
     then
-        PS1="$GREEN:)$RESET $CYAN\D{%H:%M:%S}$RESET \u$HOST:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
+        PS1="${venv}$GREEN:)$RESET $CYAN\D{%H:%M:%S}$RESET \u${host}:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
     else
-        PS1="$RED:($RESET $YELLOW\D{%H:%M:%S}$RESET \u$HOST:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
+        PS1="${venv}$RED:(${venv}$RESET $YELLOW\D{%H:%M:%S}$RESET \u${host}:\W$GREEN$(__git_ps1)$RESET\n\[\e[0m\]\$ "
     fi
 }
 PROMPT_COMMAND=exitstatus
