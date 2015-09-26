@@ -12,28 +12,14 @@
 	df = diff
 	dc = diff --cached
 	cp = cherry-pick
-	st = status -sb -uno
+	st = status
 	gl = log --pretty=short --decorate=short --graph
 	lc = log ORIG_HEAD.. --stat --no-merges
-	review = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log -p origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH
+	rh = reset HEAD
+	po = push origin
 
 [push]
 	default = current
-
-[mergetool]
-	prompt = false
-
-[merge]
-	tool = fugitive
-
-[diff]
-	tool = vimdiff
-
-[difftool]
-	prompt = false
-
-[mergetool "fugitive"]
-	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 
 [color]
 	branch  = auto
@@ -43,9 +29,11 @@
 [color "status"]
 	added = yellow
 	changed = green
+	untracked = white
+	unmerged = red
 
 [color "diff"]
-	meta = cyan bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	meta = cyan
+	frag = blue
+	old = red
+	new = green
