@@ -18,9 +18,19 @@ RESET="\[\033[0m\]"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 
-# ls colours
 if [[ $PLATFORM == 'mac' ]]; then
+    # ls colours
     export LSCOLORS='Gxfxcxdxdxegedabagacad'
+
+    # Load bash_completion for __git_ps1
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        source $(brew --prefix)/etc/bash_completion
+    fi
+elif [[ $PLATFORM == 'linux' ]]; then
+    # Load bash_git for __git_ps1
+    if [ -f $HOME/.bash_git ]; then
+        source $HOME/.bash_git
+    fi
 fi
 
 if [[ `__git_ps1` == *'command not found'* ]]; then
