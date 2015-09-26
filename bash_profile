@@ -2,14 +2,14 @@
 
 PLATFORM='unknown'
 if [[ `uname` == 'Darwin' ]]; then
-	PLATFORM='mac'
+    PLATFORM='mac'
 elif [[ `uname` == 'Linux' ]]; then
-	PLATFORM='linux'
+    PLATFORM='linux'
 fi
 export PLATFORM
 
 # Use vi editing mode
-set -o vi
+# set -o vi
 
 if [[ $PLATFORM == 'mac' ]]; then
     # Load bash_completion for __git_ps1
@@ -55,4 +55,3 @@ if [ -d $HOME/.dotfiles ]; then
         source $file
     done
 fi
-

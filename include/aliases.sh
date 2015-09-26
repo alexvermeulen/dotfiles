@@ -27,3 +27,6 @@ elif [[ $PLATFORM == 'linux' ]]; then
     alias ll='ls -AGhl --color'
 fi
 
+# Postgres commands
+alias postgres_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
+alias postgres_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
