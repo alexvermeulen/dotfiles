@@ -11,6 +11,9 @@ export PLATFORM
 # Use vi editing mode
 # set -o vi
 
+# Use emacs editing mode
+set -o emacs
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
