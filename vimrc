@@ -33,7 +33,11 @@
     set showcmd             " Show command in bottom bar
     set cursorline          " Highlight the line the cursor is on
     set showmatch           " Highlight matching braces
-    set colorcolumn=80,120  " Show common line limits
+
+    " Show common line limits
+    if exists('+colorcolumn')
+        set colorcolumn=80,120
+    endif
 
 " }}}
 
