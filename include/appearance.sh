@@ -34,7 +34,7 @@ elif [[ $PLATFORM == 'linux' ]]; then
     # Load bash_git for __git_ps1
     if [ -f "$HOME/.bash_git" ]; then
         pushd "$HOME"
-        wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+        wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --no-check-certificate
         mv git-prompt.sh .bash_git
         popd
     fi
@@ -67,4 +67,3 @@ prompt () {
 git_prompt () {
     prompt $? "$GREEN$(__git_ps1)$RESET"
 }
-
