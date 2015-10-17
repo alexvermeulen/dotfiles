@@ -23,19 +23,20 @@ if [[ $PLATFORM == 'mac' ]]; then
     export LSCOLORS='Gxfxcxdxdxegedabagacad'
 
     # Load bash_completion for __git_ps1
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        source $(brew --prefix)/etc/bash_completion
+    if [ ! -f $(brew --prefix)/etc/bash_completion ]; then
+        brew install bash-completion
     fi
+    source $(brew --prefix)/etc/bash_completion
+
 elif [[ $PLATFORM == 'linux' ]]; then
     # Load bash_git for __git_ps1
-    if [ -f $HOME/.bash_git ]; then
-        source $HOME/.bash_git
+    if [ ! -f $HOME/.bash_git ]; then
+        pushd $HOME
+        wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+        mv git-prompt.sh .bash_git
+        popd
     fi
-fi
-
-if [[ `__git_ps1` == *'command not found'* ]]; then
-    # Load bash_completion for __git_ps1
-    echo "Error: The use of __git_ps1 is required for prompt customization."
+    source $HOME/.bash_git
 fi
 
 # Customize the prompt
