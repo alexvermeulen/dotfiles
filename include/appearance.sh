@@ -18,33 +18,41 @@ RESET="\[\e[0m\]"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 
+PROMPT_COMMAND=prompt
+
 if [[ $PLATFORM == 'mac' ]]; then
     # ls colours
     export LSCOLORS='Gxfxcxdxdxegedabagacad'
 
     # Load bash_completion for __git_ps1
-    if [ ! -f "$(brew --prefix)/etc/bash_completion" ]; then
-        brew install bash-completion
+    if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+        source "$(brew --prefix)/etc/bash_completion"
+        PROMPT_COMMAND=git_prompt
     fi
-    source "$(brew --prefix)/etc/bash_completion"
 
 elif [[ $PLATFORM == 'linux' ]]; then
     # Load bash_git for __git_ps1
-    if [ ! -f "$HOME/.bash_git" ]; then
+    if [ -f "$HOME/.bash_git" ]; then
         pushd "$HOME"
         wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
         mv git-prompt.sh .bash_git
         popd
     fi
     source "$HOME/.bash_git"
+    PROMPT_COMMAND=git_prompt
 fi
 
 # Customize the prompt
-function exitstatus {
-    local exit="$?" # Save exit status since the if statments below will change it.
+prompt () {
+    local exit_status=${1:-$?} # Save exit status since the if statments below will change it.
     local host
     local venv
-    local prompt
+    local git_branch=$2
+    local time_section="$GREEN:) $CYAN\D{%H:%M:%S}$RESET"
+
+    if [[ $exit_status != 0 ]]; then
+        time_section="$RED:( $YELLOW\D{%H:%M:%S}$RESET$"
+    fi
 
     if [[ -n $SSH_CLIENT ]]; then
         host=@$WHITE$(echo "$HOSTNAME" | cut -d '.' -f 1)$RESET
@@ -54,13 +62,9 @@ function exitstatus {
         venv="$WHITE(${VIRTUAL_ENV##*/}) $RESET"
     fi
 
-    prompt=" \u${host}:\W$GREEN$(__git_ps1)$RESET\n$ "
-    if [ $exit -eq 0 ]
-    then
-        PS1="${venv}$GREEN:) $CYAN\D{%H:%M:%S}$RESET${prompt}"
-    else
-        PS1="${venv}$RED:( $YELLOW\D{%H:%M:%S}$RESET${prompt}"
-    fi
+    PS1="${venv}${time_section} \u${host}:\W${git_branch}\n $ "
 }
-PROMPT_COMMAND=exitstatus
+git_prompt () {
+    prompt $? "$GREEN$(__git_ps1)$RESET"
+}
 
