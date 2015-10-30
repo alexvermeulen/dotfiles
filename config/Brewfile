@@ -4,6 +4,7 @@
 
 # Taps
 tap 'caskroom/versions' # For Sublime Text 3
+tap 'josegonzalez/homebrew-php' # For php linting
 
 # Install Homebrew packages
 brew 'caskroom/cask/brew-cask'
@@ -11,10 +12,15 @@ brew 'bash-completion'
 brew 'git'
 brew 'imagemagick'
 brew 'macvim'
+brew 'node'
+brew 'phantomjs'
 brew 'php-code-sniffer' # Used by SublimeLinter-phpcs
+brew 'php-cs-fixer'
+brew 'phpmd'
 brew 'python'
 brew 'python3'
 brew 'shellcheck' # Used by SublimeLinter-shellcheck
+brew 'spotify'
 
 # Install Cask Apps
 cask 'calibre'
