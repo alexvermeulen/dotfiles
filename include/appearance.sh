@@ -18,6 +18,11 @@ RESET="\[\e[0m\]"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 
+# Git prompt settings
+export GIT_PS1_SHOWDIRTYSTATE=1  # Shows unstaged (*) and staged (+) changes next to the branch name
+export GIT_PS1_SHOWSTASHSTATE=1  # Show stashed state ($) next to the branch name
+export GIT_PS1_SHOWCOLORHINTS=1  # Colourizes the dirty state symbol with the colour output of git status
+
 PROMPT_COMMAND=prompt
 
 if [[ $PLATFORM == 'mac' ]]; then
@@ -26,7 +31,7 @@ if [[ $PLATFORM == 'mac' ]]; then
 
     # Load bash_completion for __git_ps1
     if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-        source "$(brew --prefix)/etc/bash_completion"
+        . "$(brew --prefix)/etc/bash_completion"
         PROMPT_COMMAND=git_prompt
     fi
 
