@@ -37,3 +37,9 @@
 	frag = blue
 	old = red
 	new = green
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[credential]
+	helper = osxkeychain

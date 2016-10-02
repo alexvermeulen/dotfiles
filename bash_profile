@@ -33,11 +33,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-# Load local configuration for this machine
-if [ -f $HOME/local_config.sh ]; then
-    source local_config.sh
-fi
-
 # Load dotfiles
 if [ -d $HOME/.dotfiles ]; then
     export DOTFILES_DIR="$HOME/.dotfiles"
@@ -46,3 +41,8 @@ if [ -d $HOME/.dotfiles ]; then
         source $file
     done
 fi
+
+export NVM_DIR="/Users/avermeulen/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

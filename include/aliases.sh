@@ -30,3 +30,5 @@ fi
 # Postgres commands
 alias postgres_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
 alias postgres_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
+
+alias de='eval "$(docker-machine env default)"; echo "docker env set"'
