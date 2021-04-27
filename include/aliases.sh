@@ -32,3 +32,6 @@ alias postgres_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgr
 alias postgres_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
 
 alias de='eval "$(docker-machine env default)"; echo "docker env set"'
+
+# symlink shortcut for sublime
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl

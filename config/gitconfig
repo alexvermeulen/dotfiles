@@ -43,3 +43,7 @@
 	smudge = git-lfs smudge %f
 [credential]
 	helper = osxkeychain
+[init]
+	templateDir = ~/.git-templates
+[core]
+	editor = subl -n -w
